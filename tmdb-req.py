@@ -6,7 +6,7 @@ db = mysql.connector.connect(
   host="localhost",
   user="root",
   database="scrape",
-  password="99Gbdyprnnv76*"
+  password="PASSWORD"
 )
 
 cursor = db.cursor(buffered=True)

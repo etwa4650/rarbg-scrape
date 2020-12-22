@@ -1,25 +1,19 @@
 import requests
-import urllib3
 from bs4 import BeautifulSoup
-import lxml.html as lh
-import pandas as pd
 import mysql.connector
-import re
+
 
 db = mysql.connector.connect(
   host="localhost",
   user="root",
   database="scrape",
-  password="99Gbdyprnnv76*"
+  password="PASSWORD"
 )
-
-
 
 cursor = db.cursor(buffered=True)
 
 
 site = requests.get('https://www.1337x.to/top-100-movies')
-
 soup = BeautifulSoup(site.text.encode('unicode-escape'), 'lxml')
 
 col1 = soup.find_all("td", {"class": "coll-1 name"})
@@ -30,7 +24,6 @@ col4= soup.find_all("td", {"class": "coll-4"})
 torrents = []
 
 for i  in range(0, len(col1)):
-  print(i)
   torrent = {}
   torrent['torrentName'] = col1[i].find('a', class_=lambda x: x != 'icon').text
   torrent['torrentSeeders'] = col2[i].text
